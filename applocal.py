@@ -19,7 +19,10 @@ st.markdown("<h1 style='text-align: center;'>myGPT - a experimental chatbot 😬
 client = OpenAI(
     api_key=os.environ['OPENAI_API_KEY'],
     # example...Jan Local API Server. 'http://192.168.XX.XX:1337/v1/'
-    base_url=os.environ['OPENAI_API_URL'],
+    # For OpenAI_access base_url=None
+    # For LocalLLM_access example...Jan Local API Server. 'http://192.168.XX.XX:1337/v1/'
+    base_url=os.environ.get('OPENAI_API_URL', None),
+
 )
 
 # Initialise session state variables
@@ -42,17 +45,17 @@ if 'total_cost' not in st.session_state:
 
 # Sidebar - let user choose model, show total cost of current conversation, and let user clear the current conversation
 st.sidebar.title("Sidebar")
-model_name = st.sidebar.radio("Choose a model:", ("GPT-3.5", "GPT-4"))
+model_name = st.sidebar.radio("Choose a model:", (os.environ['ENGINE_FOR_GPT-3.5'], os.environ['ENGINE_FOR_GPT-4']))
 
 counter_placeholder = st.sidebar.empty()
 counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
 clear_button = st.sidebar.button("Clear Conversation", key="clear")
 
 # Map model names to OpenAI model IDs
-if model_name == "GPT-3.5":
-    model = "gpt-3.5-turbo"
+if model_name == os.environ['ENGINE_FOR_GPT-3.5']:
+    model = os.environ['ENGINE_FOR_GPT-3.5']
 else:
-    model = "gpt-4"
+    model = os.environ['ENGINE_FOR_GPT-4']
 
 # reset everything
 if clear_button:
