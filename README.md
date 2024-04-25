@@ -11,5 +11,5 @@ streamlit run .\app.py      (OpenAI API)
 streamlit run .\app-azureai.py  (Azure OpenAI Service API)  
 
 type Local-LLM(Ollama).
-First, start Ollama. > ollama serve
+First, start Ollama. > ollama serve  
 streamlit run .\applocal.py  (Ollama local-llm connect)
