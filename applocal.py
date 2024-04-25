@@ -81,8 +81,12 @@ def generate_response(prompt):
     completion = client.chat.completions.create(
         messages=st.session_state['messages'],
         #model=model,
-        # Local model(LLM)
-        model="swallow-7b-instruct.Q5",
+        # Local model(llama.cpp)
+        #model="swallow-7b-instruct.Q5",
+        # Local model(Ollama)
+        #model="swallow-7b",
+        model="llama3",
+        
     )
 
     response = completion.choices[0].message.content
