@@ -8,8 +8,8 @@ from streamlit_chat import message
 load_dotenv()
 
 # Setting page title and header
-st.set_page_config(page_title="myGPT", page_icon=":robot_face:")
-st.markdown("<h1 style='text-align: center;'>myGPT - a experimental chatbot 😬</h1>", unsafe_allow_html=True)
+st.set_page_config(page_title="myLocalGPT", page_icon=":robot_face:")
+st.markdown("<h1 style='text-align: center;'>myLocalGPT - a experimental chatbot 😬</h1>", unsafe_allow_html=True)
 
 # Set org ID and API key
 
@@ -32,7 +32,8 @@ if 'past' not in st.session_state:
     st.session_state['past'] = []
 if 'messages' not in st.session_state:
     st.session_state['messages'] = [
-        {"role": "system", "content": "You are a helpful assistant."}
+        #{"role": "system", "content": "You are a helpful assistant."}
+        {"role": "system", "content": "あなたは、有能なアシスタントです。"}
     ]
 if 'model_name' not in st.session_state:
     st.session_state['model_name'] = []
@@ -62,7 +63,8 @@ if clear_button:
     st.session_state['generated'] = []
     st.session_state['past'] = []
     st.session_state['messages'] = [
-        {"role": "system", "content": "You are a helpful assistant."}
+        #{"role": "system", "content": "You are a helpful assistant."}
+        {"role": "system", "content": "あなたは、有能なアシスタントです。"}
     ]
     st.session_state['number_tokens'] = []
     st.session_state['model_name'] = []
@@ -88,7 +90,8 @@ def generate_response(prompt):
         #model="swallow-7b-instruct.Q5",
         # Local model(Ollama)
         #model="swallow-7b",
-        model="llama3",
+        #model="llama3",
+        model=model_name,
         
     )
 
@@ -121,9 +124,11 @@ with container:
 
         # from https://openai.com/pricing#language-models
         if model_name == "GPT-3.5":
-            cost = total_tokens * 0.002 / 1000
+            #cost = total_tokens * 0.002 / 1000
+            cost = 0
         else:
-            cost = (prompt_tokens * 0.03 + completion_tokens * 0.06) / 1000
+            #cost = (prompt_tokens * 0.03 + completion_tokens * 0.06) / 1000
+            cost = 0
 
         st.session_state['cost'].append(cost)
         st.session_state['total_cost'] += cost
