@@ -53,9 +53,9 @@ clear_button = st.sidebar.button("Clear Conversation", key="clear")
 
 # Map model names to OpenAI model IDs
 if model_name == os.environ['ENGINE_FOR_GPT-3.5']:
-    model = os.environ['ENGINE_FOR_GPT-3.5']
+    model = os.environ['FULL_ENGINE_FOR_GPT-3.5']
 else:
-    model = os.environ['ENGINE_FOR_GPT-4']
+    model = os.environ['FULL_ENGINE_FOR_GPT-4']
 
 # reset everything
 if clear_button:
@@ -89,7 +89,7 @@ def generate_response(prompt):
         # Local model(Ollama)
         #model="swallow-7b",
         #model="llama3",
-        model=model_name,
+        model=model,
         
     )
 
