@@ -40,16 +40,21 @@ if 'total_cost' not in st.session_state:
 
 # Sidebar - let user choose model, show total cost of current conversation, and let user clear the current conversation
 st.sidebar.title("Sidebar")
-model_name = st.sidebar.radio("Choose a model:", ("GPT-3.5", "GPT-4"))
+#model_name = st.sidebar.radio("Choose a model:", ("GPT-3.5", "GPT-4"))
+model_name = st.sidebar.radio("Choose a model:", ("GPT-4o-mini", "GPT-4o"))
 counter_placeholder = st.sidebar.empty()
 counter_placeholder.write(f"Total cost of this conversation: ${st.session_state['total_cost']:.5f}")
 clear_button = st.sidebar.button("Clear Conversation", key="clear")
 
 # Map model names to OpenAI model IDs
-if model_name == "GPT-3.5":
-    model = "gpt-3.5-turbo"
+# if model_name == "GPT-3.5":
+#     model = "gpt-3.5-turbo"
+# else:
+#     model = "gpt-4"
+if model_name == "GPT-4o-mini":
+    model = "gpt-4o-mini"
 else:
-    model = "gpt-4"
+    model = "gpt-4o"
 
 # reset everything
 if clear_button:
